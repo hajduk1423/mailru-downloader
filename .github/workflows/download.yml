@@ -1,0 +1,21 @@
+name: Download Mail.ru File
+
+on:
+  workflow_dispatch:
+
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install curl
+      run: sudo apt-get update && sudo apt-get install -y curl
+
+    - name: Download file
+      run: |
+        curl -L -o mailru_file.zip "https://cloud.mail.ru/stock/gG8HMLWTGFri9X9QDgZK1YcU"
+
+    - name: Upload result
+      uses: actions/upload-artifact@v4
+      with:
+        name: mailru_file
+        path: mailru_file.zip
